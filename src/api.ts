@@ -6,6 +6,6 @@ const axiosInstance = axios.create();
 
 export const fetchData = async () => {
   const res = await axiosInstance.get(apiUrl);
-  return res.data;
+  return res;
 };
 
