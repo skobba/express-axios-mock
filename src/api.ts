@@ -1,4 +1,4 @@
-import { createAxiosInstance } from './createAxiosInstance';
+import createAxiosInstance from './createAxiosInstance';
 const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
 
 const axiosInstance = createAxiosInstance();

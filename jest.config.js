@@ -1,6 +1,6 @@
 module.exports = {
     "roots": [
-      "<rootDir>/src"
+      "<rootDir>/"
     ],
     "testMatch": [
       "**/__tests__/**/*.+(ts|tsx|js)",
@@ -9,4 +9,8 @@ module.exports = {
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
+    "moduleDirectories": ["node_modules", "__mocks__"],
+    "moduleNameMapper": {
+      "^axios$": "<rootDir>/__mocks__/axios.mock.ts"
+    }
   }
