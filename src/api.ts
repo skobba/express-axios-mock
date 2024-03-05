@@ -1,10 +1,8 @@
-import createAxiosInstance from './createAxiosInstance';
-const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+import axiosInstance from './createAxiosInstance';
 
-const axiosInstance = createAxiosInstance();
+const apiUrl = '/posts/1';
 
-export const fetchData = async () => {
-  const res = await axiosInstance.get(apiUrl);
-  return res;
-};
-
+export const fetchData = async () =>
+    await axiosInstance.get(apiUrl)
+        .then(response => response)
+        .catch((error) => error.response)

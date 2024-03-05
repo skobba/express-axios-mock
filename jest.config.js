@@ -9,8 +9,5 @@ module.exports = {
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "moduleDirectories": ["node_modules", "__mocks__"],
-    "moduleNameMapper": {
-      "^axios$": "<rootDir>/__mocks__/axios.mock.ts"
-    }
+    "moduleDirectories": ["node_modules", "__mocks__"]
   }
