@@ -14,7 +14,14 @@ const requestInterceptor = axiosInstance.interceptors.request.use(function (conf
 });
 
 export const fetchData = async () => {
-  const res = await axiosInstance.get(apiUrl);
-  return res;
+  try {
+    const res = await axiosInstance.get(apiUrl);
+    return res;
+  } catch (error) {
+    console.log('something was catched axiosInstance.get(): ', error.code);
+
+    // Rethrow the error
+    throw error;
+  } 
 };
 
