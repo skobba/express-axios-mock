@@ -1,16 +1,27 @@
 
 import React from 'react'
-// import { Pokemon } from './Pokemon'
 import { useState } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Dashboard from './Dashboard';
 
-const pokemon = ['bulbasaur', 'pikachu', 'ditto', 'bulbasaur']
+// Create a custom theme
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+});
 
 export default function App() {
-  const [pollingInterval, setPollingInterval] = useState(0)
-
   return (
-    <div className="App">
-      React is running!
-    </div>
+    <ThemeProvider theme={theme}>
+      <div>
+        <Dashboard />
+      </div>
+    </ThemeProvider>
   )
 }

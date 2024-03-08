@@ -11,6 +11,30 @@ What is possible to mock in this app:
 
 The 3. approach looks like the only way to acually test the setup of axios-retries in createAxiosInstance().
 
+# Component Diagram
+```
+         +----------------+
+         |                |
+         | React Frontend |
+         |                |
+         +-------+--------+
+                 |
+                 |
+                 |
+           +-----v-----+
+           |    BFF    |
+           +-----+-----+
+                 |
+       +---------+-----------+
+       |                     |
+       |                     v
++------v------+       +------+-------+
+|             |       |              |
+| BlueServer  |       |  GreenServer |
+|             |       |              |
++-------------+       +--------------+
+````
+
 # Structure
 ```
 .

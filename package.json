@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel proxy server",
+    "start": "npm-run-all --parallel proxy server frontend",
     "proxy": "nodemon proxy/index.ts",
     "server": "nodemon server/index.ts",
+    "frontend": "npm run watch --prefix frontend",
     "build": "npx tsc",
     "start:build": "node dist/index.js",
     "test": "jest --verbose=false --watch fetchData.test.ts"
