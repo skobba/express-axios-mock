@@ -8,13 +8,27 @@ import Grid from '@mui/material/Grid';
 const Dashboard = () => {
 
     // State to store the fetched data
-    const [data, setData] = useState(null);
+    const [data, setData] = useState(null as any);
 
     // Function to fetch data from the API
     const fetchData = async () => {
       try {
         // Fetch data from the API
         const response = await fetch('http://localhost:8000/api');
+
+        // Check if response is OK (status code 200-299)
+        if (!response.ok) {
+          // Get the HTTP status code
+          const statusCode = response.status;
+          
+          // Handle the HTTP error
+          console.error('HTTP error. Status code:', statusCode);
+          // Additional error handling logic if needed
+          setData({error: statusCode});
+
+          return;
+        }
+
         // Parse the JSON response
         const jsonData = await response.json();
         // Update the state with the fetched data
