@@ -1,6 +1,6 @@
 import express, { Express, Request, Response , Application } from 'express';
 import dotenv from 'dotenv';
-import {fetchData} from './api';
+import {fetchData} from './api/api';
 
 dotenv.config();
 
@@ -13,6 +13,6 @@ app.get('/', async (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is Fire at http://localhost:${port}`);
+  console.log(`Proxy at http://localhost:${port}`);
 });
 

@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm-run-all --parallel proxy server",
+    "proxy": "nodemon proxy/index.ts",
+    "server": "nodemon server/index.ts",
     "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts",
+    "start:build": "node dist/index.js",
     "test": "jest --verbose=false --watch fetchData.test.ts"
   },
   "keywords": [],
@@ -26,6 +28,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
+    "npm-run-all": "^4.1.5",
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"

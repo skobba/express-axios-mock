@@ -1,5 +1,5 @@
-import createAxiosInstance from './createAxiosInstance';
-const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+import createAxiosInstance from '../createAxiosInstance';
+const apiUrl = 'http://localhost:8001';
 
 const axiosInstance = createAxiosInstance();
 

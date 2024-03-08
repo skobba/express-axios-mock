@@ -1,4 +1,4 @@
-import { fetchData } from '../src/api';
+import { fetchData } from '../proxy/api/api';
 
 describe('suite', () => {
   it('should fetch data successfully on first attempt', async () => {
