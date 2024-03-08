@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 const Dashboard = () => {
 
@@ -30,20 +31,26 @@ const Dashboard = () => {
         Backend-for-Frontend (BFF) pattern
       </Typography>
 
-      <Typography variant="body1" align="center">
-        Demo with three express servers and one react frontend in an BFF pattern.
-        <ol style={{ textAlign: "left" }} >
-          <li>BFF server running this react frontend on http://localhost:8000</li>
-          <li>ServerBlue running demo api</li>
-          <li>ServerGree running demo api</li>
-        </ol>
-      </Typography>
+    <Grid container spacing={2}>
+      {/* First Column */}
+      <Grid item xs={6}>
+        <Typography variant="body1" align="left">
+          Demo with three express servers and one react frontend in an BFF pattern.
+        </Typography>
+      </Grid>
+      
+      {/* Second Column */}
+      <Grid item xs={6}>
+        <img src="/bff-pattern.svg" alt="SVG icon" />
+      </Grid>
+    </Grid>
 
-      <Button variant="contained" color="primary" onClick={fetchData}>
-        Fetch data
-      </Button>
+    <Button variant="contained" color="primary" onClick={fetchData}>
+      Fetch data
+    </Button>
+    
       <Box
-            height={200}
+            height={150}
             my={4}
             display="flex"
             alignItems="center"
