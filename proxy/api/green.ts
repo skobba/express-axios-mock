@@ -1,5 +1,5 @@
 import createAxiosInstance from '../createAxiosInstance';
-const apiUrl = 'http://localhost:8001';
+const apiUrl = 'http://localhost:8002';
 
 const axiosInstance = createAxiosInstance();
 
@@ -13,7 +13,7 @@ const requestInterceptor = axiosInstance.interceptors.request.use(function (conf
   return Promise.reject(error);
 });
 
-export const fetchData = async () => {
+export const fetchGreenData = async () => {
   try {
     const res = await axiosInstance.get(apiUrl);
     return res;

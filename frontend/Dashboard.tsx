@@ -6,33 +6,43 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 const Dashboard = () => {
-
-    // State to store the fetched data
     const [data, setData] = useState(null as any);
 
-    // Function to fetch data from the API
-    const fetchData = async () => {
+    const fetchBlueData = async () => {
       try {
-        // Fetch data from the API
-        const response = await fetch('http://localhost:8000/api');
+        const response = await fetch('http://localhost:8000/api/blue');
 
-        // Check if response is OK (status code 200-299)
         if (!response.ok) {
-          // Get the HTTP status code
           const statusCode = response.status;
-          
-          // Handle the HTTP error
           console.error('HTTP error. Status code:', statusCode);
-          // Additional error handling logic if needed
           setData({error: statusCode});
-
+          return;
+        } else {
+          const jsonData = await response.json();
+          setData(jsonData);
           return;
         }
 
-        // Parse the JSON response
-        const jsonData = await response.json();
-        // Update the state with the fetched data
-        setData(jsonData);
+      } catch (error: any) {
+        console.error('Error fetching data: ', error.message);
+      }
+    };
+
+    const fetchGreenData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/green');
+
+        if (!response.ok) {
+          const statusCode = response.status;
+          console.error('HTTP error. Status code:', statusCode);
+          setData({error: statusCode});
+          return;
+        } else {
+          const jsonData = await response.json();
+          setData(jsonData);
+          return;
+        }
+
       } catch (error: any) {
         console.error('Error fetching data: ', error.message);
       }
@@ -59,10 +69,14 @@ const Dashboard = () => {
       </Grid>
     </Grid>
 
-    <Button variant="contained" color="primary" onClick={fetchData}>
-      Fetch data
+    <Button variant="contained" color="primary" onClick={fetchBlueData}>
+      Fetch blue data
     </Button>
     
+    <Button variant="contained" color="success" onClick={fetchGreenData}>
+      Fetch green data
+    </Button>
+
       <Box
             height={150}
             my={4}
