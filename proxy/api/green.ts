@@ -1,6 +1,6 @@
 import createAxiosInstance from '../createAxiosInstance';
 import { Router, Request, Response  } from 'express';
-const apiUrl = 'http://localhost:8002';
+const apiUrl = 'http://localhost:8002/message';
 
 const greenRouter = Router();
 const axiosInstance = createAxiosInstance();
