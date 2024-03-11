@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel proxy blue green frontend",
-    "proxy": "nodemon proxy/index.ts",
+    "start": "npm-run-all --parallel bff blue green frontend",
+    "bff": "nodemon bff/index.ts",
     "blue": "nodemon blue/index.ts",
     "green": "nodemon green/index.ts",
     "frontend": "npm run watch --prefix frontend",

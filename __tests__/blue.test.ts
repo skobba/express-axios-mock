@@ -1,4 +1,4 @@
-import { fetchBlueData } from '../proxy/api/blue';
+import { fetchBlueData } from '../bff/api/blue';
 import nock from 'nock';
 
 
