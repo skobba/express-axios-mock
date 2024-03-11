@@ -8,13 +8,13 @@ const createAxiosInstance = (baseUrl) => {
   });
 
   // Retry configuration
-  // axiosRetry(axiosInstance, {
-  //   retries: 3, // Number of retries
-  //   retryDelay: axiosRetry.exponentialDelay,
-  //   // onRetry: (retryCount, error, requestConfig) => {
-  //   //   console.log(`url: ${requestConfig.url} retry count: ${retryCount}`);
-  //   // },
-  // });
+  axiosRetry(axiosInstance, {
+    retries: 3,
+    retryDelay: axiosRetry.exponentialDelay,
+    onRetry: (retryCount, error, requestConfig) => {
+      // console.log(`url: ${requestConfig.url} retry count: ${retryCount}`);
+    },
+  });
 
   return axiosInstance;
 };
