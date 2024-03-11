@@ -1,13 +1,14 @@
 import createAxiosInstance from '../createAxiosInstance';
 import { Router, Request, Response  } from 'express';
-const apiUrl = 'http://localhost:8002/message';
+const baseUrl = 'http://localhost:8002';
+const path = '/message';
 
 const greenRouter = Router();
-const axiosInstance = createAxiosInstance();
+const axiosInstance = createAxiosInstance(baseUrl);
 
 const fetchGreenData = async () => {
   try {
-    const res = await axiosInstance.get(apiUrl);
+    const res = await axiosInstance.get(`${baseUrl}${path}`);
     return res;
   } catch (error) {
     console.log('something was catched axiosInstance.get(): ', error.code);

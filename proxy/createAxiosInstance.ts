@@ -1,13 +1,19 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-const createAxiosInstance = () => {
-  const axiosInstance = axios.create();
+const createAxiosInstance = (baseUrl) => {
+  const axiosInstance = axios.create({
+    baseURL: baseUrl,
+    //timeout: 1000,
+  });
 
   // Retry configuration
   // axiosRetry(axiosInstance, {
   //   retries: 3, // Number of retries
-  //   retryDelay: axiosRetry.exponentialDelay, // Exponential backoff retry delay
+  //   retryDelay: axiosRetry.exponentialDelay,
+  //   // onRetry: (retryCount, error, requestConfig) => {
+  //   //   console.log(`url: ${requestConfig.url} retry count: ${retryCount}`);
+  //   // },
   // });
 
   return axiosInstance;
