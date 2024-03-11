@@ -2,7 +2,7 @@ import { fetchGreenData } from '../proxy/api/green';
 import nock from 'nock';
 
 
-describe('blue', () => {
+describe('green', () => {
   nock('http://localhost:8002').get('/message').reply(200, { message: 'Message from blue mock' })
 
   it('should fetch data successfully on first attempt', async () => {
@@ -11,7 +11,7 @@ describe('blue', () => {
   });
 });
 
-describe('blue-retry', () => {
+describe('green-retry', () => {
   nock('http://localhost:8002').get('/message').replyWithError('500');
   nock('http://localhost:8002').get('/message').replyWithError('500');
   nock('http://localhost:8002').get('/message').reply(200, { message: 'Message from blue mock' })
@@ -21,6 +21,6 @@ describe('blue-retry', () => {
     const res = await fetchGreenData(); // 200
 
     expect(res.status).toBe(200);
-    expect(res.config['axios-retry'].retries).toBe(3);
+    expect(res.config['axios-retry'].retryCount).toBe(2);
   });
 });

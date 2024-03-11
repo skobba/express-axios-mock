@@ -27,7 +27,8 @@ blueRouter.get('/api/blue', async (req: Request, res: Response) => {
 
     if (error.code === 'ECONNREFUSED')
     {
-      res.status(503).send({error: 'Service Unavailable'});
+      const retryCount = error.config['axios-retry'].retryCount;
+      res.status(503).send({error: 'Blue Service Unavailable', retryCount});
     }
   } 
 });

@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 const Dashboard = () => {
-    const [data, setData] = useState(null as any);
+    const [blueData, setBlueData] = useState(null as any);
+    const [greenData, setGreenData] = useState(null as any);
 
     const fetchBlueData = async () => {
       try {
@@ -14,12 +15,13 @@ const Dashboard = () => {
 
         if (!response.ok) {
           const statusCode = response.status;
+          const json =  await response.json();
           console.error('HTTP error. Status code:', statusCode);
-          setData({error: statusCode});
+          setBlueData(json);
           return;
         } else {
           const jsonData = await response.json();
-          setData(jsonData);
+          setBlueData(jsonData);
           return;
         }
 
@@ -34,16 +36,19 @@ const Dashboard = () => {
 
         if (!response.ok) {
           const statusCode = response.status;
+          const json =  await response.json();
           console.error('HTTP error. Status code:', statusCode);
-          setData({error: statusCode});
+          setGreenData(json);
           return;
         } else {
           const jsonData = await response.json();
-          setData(jsonData);
+          setGreenData(jsonData);
           return;
         }
 
       } catch (error: any) {
+
+        console.log('error.response.data: ', error.response.data)
         console.error('Error fetching data: ', error.message);
       }
     };
@@ -56,38 +61,55 @@ const Dashboard = () => {
       </Typography>
 
     <Grid container spacing={2}>
-      {/* First Column */}
       <Grid item xs={6}>
         <Typography variant="body1" align="left">
           Demo with three express servers and one react frontend in an BFF pattern.
         </Typography>
       </Grid>
-      
-      {/* Second Column */}
       <Grid item xs={6}>
         <img src="/bff-pattern.svg" alt="SVG icon" />
       </Grid>
     </Grid>
 
-    <Button variant="contained" color="primary" onClick={fetchBlueData}>
-      Fetch blue data
-    </Button>
-    
-    <Button variant="contained" color="success" onClick={fetchGreenData}>
-      Fetch green data
-    </Button>
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={fetchBlueData}>
+          Fetch blue data
+        </Button>
+        <Box
+          height={150}
+          my={4}
+          display="flex"
+          alignItems="center"
+          gap={4}
+          p={2}
+          sx={{ border: '2px solid grey' }}
+            >
+              <pre>{JSON.stringify(blueData, null, 2)}</pre>
+        </Box>
+      </Grid>
+      <Grid item xs={6}>
+      <Button variant="contained" color="success" onClick={fetchGreenData}>
+        Fetch green data
+      </Button>
+       <Box
+          height={150}
+          my={4}
+          display="flex"
+          alignItems="center"
+          gap={4}
+          p={2}
+          sx={{ border: '2px solid grey' }}
+            >
+              <pre>{JSON.stringify(greenData, null, 2)}</pre>
+        </Box>
+      </Grid>
+    </Grid>
 
-      <Box
-            height={150}
-            my={4}
-            display="flex"
-            alignItems="center"
-            gap={4}
-            p={2}
-            sx={{ border: '2px solid grey' }}
-          >
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </Box>
+
+
+
+
     </div>
   </Container>
   );

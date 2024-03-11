@@ -23,11 +23,13 @@ greenRouter.get('/api/green', async (req: Request, res: Response) => {
     const resApi = await fetchGreenData();
     res.send(resApi.data);
   } catch (error) {
-    console.log('something was catched at fetchBlueData(): ', error.code);//, error.data);
+    console.log('something was catched at fetchGreenData(): ', error.code);//, error.data);
 
     if (error.code === 'ECONNREFUSED')
     {
-      res.status(503).send({error: 'Service Unavailable'});
+      const retryCount = error.config['axios-retry'].retryCount;
+      console.log(`Green Service Unavailable after ${retryCount} retries`)
+      res.status(503).send({error: 'Green Service Unavailable', retryCount: retryCount});
     }
   } 
 });

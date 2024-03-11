@@ -9,10 +9,13 @@ const createAxiosInstance = (baseUrl) => {
 
   // Retry configuration
   axiosRetry(axiosInstance, {
-    retries: 3,
-    retryDelay: axiosRetry.exponentialDelay,
+    retries: 5,
+    retryDelay: (retryCount) => {
+      // Custom retry delay logic
+      return 1000; // (in milliseconds)
+    },
     onRetry: (retryCount, error, requestConfig) => {
-      // console.log(`url: ${requestConfig.url} retry count: ${retryCount}`);
+      console.log(`url: ${requestConfig.url} retry count: ${retryCount}`);
     },
   });
 

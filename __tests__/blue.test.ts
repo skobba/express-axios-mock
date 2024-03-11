@@ -21,6 +21,6 @@ describe('blue-retry', () => {
     const res = await fetchBlueData(); // 200
 
     expect(res.status).toBe(200);
-    expect(res.config['axios-retry'].retries).toBe(3);
+    expect(res.config['axios-retry'].retryCount).toBe(2);
   });
 });
