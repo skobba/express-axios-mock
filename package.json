@@ -11,7 +11,8 @@
     "frontend": "npm run watch --prefix frontend",
     "build": "npx tsc",
     "start:build": "node dist/index.js",
-    "test": "jest --verbose=false --watch ./__tests__/"
+    "test": "jest --verbose=false --watch ./__tests__/",
+    "postinstall": "pushd ./blue && npm i && popd ; pushd ./green && npm i && popd ; pushd ./frontend && npm i && popd"
   },
   "keywords": [],
   "author": "",
