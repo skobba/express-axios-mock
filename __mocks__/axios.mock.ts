@@ -7,8 +7,8 @@ axiosMock.create = jest.fn(() => axiosMock);
 
 // Succeed on third GET requests
 axiosMock.get = jest.fn()
-.mockImplementationOnce(() => Promise.resolve({ status: 404, data: {}}))
-.mockImplementationOnce(() => Promise.resolve({ status: 404, data: {}}))
+.mockImplementationOnce(() => Promise.resolve({ status: 500, data: {}}))
+.mockImplementationOnce(() => Promise.resolve({ status: 500, data: {}}))
 .mockImplementationOnce(() => Promise.resolve({ status: 200, data: {}}))
 
 // Succseed on every POST request

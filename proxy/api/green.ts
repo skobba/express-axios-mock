@@ -5,17 +5,7 @@ const apiUrl = 'http://localhost:8002';
 const greenRouter = Router();
 const axiosInstance = createAxiosInstance();
 
-// Add a request interceptor
-const requestInterceptor = axiosInstance.interceptors.request.use(function (config) {
-  // Do something before request is sent
-  console.log('Intercepted GET request:', config.url);
-  return config;
-}, function (error) {
-  // Do something with request error
-  return Promise.reject(error);
-});
-
-export const fetchGreenData = async () => {
+const fetchGreenData = async () => {
   try {
     const res = await axiosInstance.get(apiUrl);
     return res;
@@ -41,4 +31,4 @@ greenRouter.get('/api/green', async (req: Request, res: Response) => {
   } 
 });
 
-export {greenRouter}
+export {greenRouter, fetchGreenData}

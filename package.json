@@ -11,7 +11,7 @@
     "frontend": "npm run watch --prefix frontend",
     "build": "npx tsc",
     "start:build": "node dist/index.js",
-    "test": "jest --verbose=false --watch fetchData.test.ts"
+    "test": "jest --verbose=false --watch ./__tests__"
   },
   "keywords": [],
   "author": "",
