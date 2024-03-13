@@ -8,8 +8,26 @@ import Grid from '@mui/material/Grid';
 const Dashboard = () => {
     const [blueData, setBlueData] = useState(null as any);
     const [greenData, setGreenData] = useState(null as any);
-
+    let intervalId: NodeJS.Timeout;
+    
+    function startCounter(backend: string): void {
+      let count: number = 0;
+      console.log(count);
+      intervalId = setInterval(() => {
+          count++;
+          if (backend === "blue") {
+            setBlueData(count);
+          } else if (backend === "green") {
+            setGreenData(count);
+          }
+      }, 1000);
+    }
+    
+    function stopCounter(): void {
+        clearInterval(intervalId);
+    }
     const fetchBlueData = async () => {
+      startCounter("blue");
       try {
         const response = await fetch('http://localhost:8000/api/blue');
 
@@ -26,11 +44,16 @@ const Dashboard = () => {
         }
 
       } catch (error: any) {
+        setBlueData("Error fetching data from BFF");
         console.error('Error fetching data: ', error.message);
+      } finally {
+        stopCounter();
       }
     };
 
     const fetchGreenData = async () => {
+      startCounter("green");
+
       try {
         const response = await fetch('http://localhost:8000/api/green');
 
@@ -47,9 +70,10 @@ const Dashboard = () => {
         }
 
       } catch (error: any) {
-
-        console.log('error.response.data: ', error.response.data)
+        setGreenData("Error fetching data from BFF");
         console.error('Error fetching data: ', error.message);
+      } finally {
+        stopCounter();
       }
     };
 
