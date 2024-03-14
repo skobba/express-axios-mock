@@ -1,6 +1,6 @@
 import express, { Express, Request, Response , Application } from 'express';
-import {blueRouter} from './api/blue';
-import {greenRouter} from './api/green';
+import {blueRouter} from './routers/blue';
+import {greenRouter} from './routers/green';
 import path from 'path';
 
 const app: Application = express();

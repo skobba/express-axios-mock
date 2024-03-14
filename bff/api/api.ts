@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {blueRouter} from './blue';
-import {greenRouter} from './green';
+import {blueRouter} from '../routers/blue';
+import {greenRouter} from '../routers/green';
 
 const api = Router();
 

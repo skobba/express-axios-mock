@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 const Post = () => {
@@ -55,7 +53,7 @@ const Post = () => {
       startCounter("green");
 
       try {
-        const response = await fetch('http://localhost:8000/api/green/message');
+        const response = await fetch('http://localhost:8000/api/green/post');
 
         if (!response.ok) {
           const statusCode = response.status;
