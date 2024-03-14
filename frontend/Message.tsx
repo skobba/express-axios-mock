@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
-const Dashboard = () => {
+const Message = () => {
     const [blueData, setBlueData] = useState(null as any);
     const [greenData, setGreenData] = useState(null as any);
     let intervalId: NodeJS.Timeout;
@@ -29,7 +29,7 @@ const Dashboard = () => {
     const fetchBlueData = async () => {
       startCounter("blue");
       try {
-        const response = await fetch('http://localhost:8000/api/blue');
+        const response = await fetch('http://localhost:8000/api/blue/message');
 
         if (!response.ok) {
           const statusCode = response.status;
@@ -55,7 +55,7 @@ const Dashboard = () => {
       startCounter("green");
 
       try {
-        const response = await fetch('http://localhost:8000/api/green');
+        const response = await fetch('http://localhost:8000/api/green/message');
 
         if (!response.ok) {
           const statusCode = response.status;
@@ -78,65 +78,45 @@ const Dashboard = () => {
     };
 
   return (
-    <Container maxWidth="md" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
     <div>
-      <Typography variant="h4" gutterBottom align="center">
-        Backend-for-Frontend (BFF) pattern
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
 
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <Typography variant="body1" align="left">
-          Demo with three express servers and one react frontend in an BFF pattern.
-        </Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <img src="/bff-pattern.svg" alt="SVG icon" />
-      </Grid>
-    </Grid>
+          <Box
+            height={150}
+            my={4}
+            display="column"
+            alignItems="center"
+            gap={4}
+            p={2}
+            sx={{ border: '2px solid grey' }}
+              >
+                <Button variant="contained" color="primary" onClick={fetchBlueData}>
+                  Fetch blue message
+                </Button>
+                <pre>{JSON.stringify(blueData, null, 2)}</pre>
+          </Box>
+        </Grid>
+        <Grid item xs={6}>
 
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <Button variant="contained" color="primary" onClick={fetchBlueData}>
-          Fetch blue data
-        </Button>
         <Box
-          height={150}
-          my={4}
-          display="flex"
-          alignItems="center"
-          gap={4}
-          p={2}
-          sx={{ border: '2px solid grey' }}
-            >
-              <pre>{JSON.stringify(blueData, null, 2)}</pre>
-        </Box>
+            height={150}
+            my={4}
+            display="column"
+            alignItems="center"
+            gap={4}
+            p={2}
+            sx={{ border: '2px solid grey' }}
+              >
+                <Button variant="contained" color="success" onClick={fetchGreenData}>
+                  Fetch green message
+                </Button>
+                <pre>{JSON.stringify(greenData, null, 2)}</pre>
+          </Box>
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-      <Button variant="contained" color="success" onClick={fetchGreenData}>
-        Fetch green data
-      </Button>
-       <Box
-          height={150}
-          my={4}
-          display="flex"
-          alignItems="center"
-          gap={4}
-          p={2}
-          sx={{ border: '2px solid grey' }}
-            >
-              <pre>{JSON.stringify(greenData, null, 2)}</pre>
-        </Box>
-      </Grid>
-    </Grid>
-
-
-
-
-
     </div>
-  </Container>
   );
 };
 
-export default Dashboard;
+export default Message;
