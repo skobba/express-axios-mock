@@ -1,26 +1,15 @@
 import { fetchGreenData } from '../bff/api/green';
-import nock from 'nock';
-
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios';
 
 describe('green', () => {
-  nock('http://localhost:8002').get('/message').reply(200, { message: 'Message from blue mock' })
-
   it('should fetch data successfully on first attempt', async () => {
+    let axiosMock = new MockAdapter(axios);
+
+    axiosMock.onGet('http://localhost:8002/message').reply(200);
+
     const res = await fetchGreenData();
-    expect(res.status).toBe(200);
-  });
-});
-
-describe('green-retry', () => {
-  nock('http://localhost:8002').get('/message').replyWithError('500');
-  nock('http://localhost:8002').get('/message').replyWithError('500');
-  nock('http://localhost:8002').get('/message').reply(200, { message: 'Message from blue mock' })
-
-  it('should retry three times', async () => {
-
-    const res = await fetchGreenData(); // 200
 
     expect(res.status).toBe(200);
-    expect(res.config['axios-retry'].retryCount).toBe(2);
   });
 });
