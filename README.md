@@ -1,3 +1,10 @@
+# Run
+```
+npm i ; npm start
+```
+
+Go to: ![http://localhost:8000](http://localhost:8000)
+
 # Overview
 This testing approach is mocking request with the nock framework to test axios-retry on the BFF server.
 
